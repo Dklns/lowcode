@@ -1,12 +1,16 @@
 <template>
-  <LoginRegisterPage></LoginRegisterPage>
+  <!-- <LoginPage></LoginPage> -->
+  <!-- <RegisterPage></RegisterPage> -->
+  <router-view></router-view>
 </template>
 <script>
-import LoginRegisterPage from "./views/LoginRegisterPage.vue";
+// import LoginPage from "./views/LoginPage.vue";
+// import RegisterPage from "./views/RegisterPage.vue";
 export default {
-  components: {
-    LoginRegisterPage,
-  },
+  // components: {
+  //   // LoginPage,
+  //   RegisterPage
+  // },
 };
 </script>
 <style lang="scss">

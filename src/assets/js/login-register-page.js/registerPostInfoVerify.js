@@ -1,6 +1,6 @@
 import { loginPostInfoAxios } from "./loginPostInfoAxios.js"
-export function registerPostInfoVerify(username, password, email, _this) {
-    if (username === "" || password === "" || email === "") {
+export function registerPostInfoVerify(username, password, email, authcode, _this) {
+    if (username === "" || password === "" || email === "" || authcode === "") {
         if (username === "") {
             var register_page_register_user_name_input = document.querySelector(
                 ".register-page-register-user-name-input"
@@ -52,6 +52,24 @@ export function registerPostInfoVerify(username, password, email, _this) {
                 function () {
                     this.classList.remove(
                         "register-page-register-email-input-placeholder"
+                    );
+                }
+            );
+        }
+        if (authcode === "") {
+            var register_page_register_authcode_input = document.querySelector(
+                ".register-page-register-authcode-input"
+            );
+            register_page_register_authcode_input.placeholder = "请输入验证码";
+            register_page_register_authcode_input.setAttribute(
+                "class",
+                "register-page-register-authcode-input register-page-register-authcode-input-placeholder"
+            );
+            register_page_register_authcode_input.addEventListener(
+                "focus",
+                function () {
+                    this.classList.remove(
+                        "register-page-register-authcode-input-placeholder"
                     );
                 }
             );

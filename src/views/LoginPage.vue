@@ -1,112 +1,47 @@
 <template>
-  <div class="login-register-box">
-    <div class="login-register-container">
-      <div class="login-page" id="login">
-        <div class="login-page-bg-box">
-          <div class="login-page-img-container">
-            <img src="../assets/img/pic_one_login.png" alt="" />
-            <img src="../assets/img/pic_two_login.png" alt="" />
-          </div>
-          <div class="login-page-register-container">
-            <div>新用户</div>
-            <div>终于等到你啦！点击下方注册按钮加入我们吧</div>
-            <div>
-              <button><a href="#register">注册</a></button>
-            </div>
-          </div>
+  <div class="login-container">
+    <div class="login-page" id="login">
+      <div class="login-page-bg-box">
+        <div class="login-page-img-container">
+          <img src="../assets/img/pic_one_login.png" alt="" />
+          <img src="../assets/img/pic_two_login.png" alt="" />
         </div>
-        <div class="login-page-login-box">
-          <div class="login-page-login-container">
-            <div class="login-page-login-title">登录</div>
-            <div class="login-page-login-username">
-              <div class="login-page-login-user-name-icon">
-                <img src="../assets/img/pic_three_login.png" alt="" />
-              </div>
-              <input
-                class="login-page-login-user-name-input"
-                type="text"
-                placeholder="用户名"
-                v-model="loginObj.username"
-              />
-            </div>
-            <div class="login-page-login-password">
-              <div class="login-page-login-user-password-icon">
-                <img src="../assets/img/pic_four_login.png" alt="" />
-              </div>
-              <input
-                class="login-page-login-user-name-password"
-                type="password"
-                placeholder="密码"
-                v-model="loginObj.password"
-              />
-            </div>
-            <div class="login-page-login-confirm">
-              <button @click="loginPostInfo">登录</button>
-            </div>
+        <div class="login-page-register-container">
+          <div>新用户</div>
+          <!-- <div></div> -->
+          <div>终于等到你啦！点击下方注册按钮加入我们吧</div>
+          <div>
+            <button><router-link to="/register">注册</router-link></button>
           </div>
         </div>
       </div>
-      <div class="register-page" id="register">
-        <div class="register-page-bg-box">
-          <div class="register-page-img-container">
-            <img src="../assets/img/pic_one_register.png" alt="" />
-            <img src="../assets/img/pic_two_register.png" alt="" />
+      <div class="login-page-login-box">
+        <div class="login-page-login-container">
+          <div class="login-page-login-title">登录</div>
+          <div class="login-page-login-username">
+            <div class="login-page-login-user-name-icon">
+              <img src="../assets/img/pic_three_login.png" alt="" />
+            </div>
+            <input
+              class="login-page-login-user-name-input"
+              type="text"
+              placeholder="用户名"
+              v-model="loginObj.username"
+            />
           </div>
-          <div class="login-page-register-container">
-            <div>旧用户</div>
-            <div>已经注册过啦，点击下方按钮加入我们吧</div>
-            <div>
-              <button><a href="#login">登录</a></button>
+          <div class="login-page-login-password">
+            <div class="login-page-login-user-password-icon">
+              <img src="../assets/img/pic_four_login.png" alt="" />
             </div>
+            <input
+              class="login-page-login-user-name-password"
+              type="password"
+              placeholder="密码"
+              v-model="loginObj.password"
+            />
           </div>
-        </div>
-        <div class="register-page-register-box">
-          <div class="register-page-register-container">
-            <div class="register-page-register-title">注册</div>
-            <div class="register-page-register-username">
-              <div class="register-page-register-user-name-icon">
-                <img src="../assets/img/pic_three_login.png" alt="" />
-              </div>
-              <input
-                v-model="registerObj.username"
-                type="text"
-                placeholder="用户名"
-                class="register-page-register-user-name-input"
-              />
-            </div>
-            <div class="register-page-register-password">
-              <div class="register-page-register-user-password-icon">
-                <img src="../assets/img/pic_four_login.png" alt="" />
-              </div>
-              <input
-                type="password"
-                v-model="registerObj.password"
-                placeholder="密码"
-                class="register-page-register-password-input"
-              />
-            </div>
-            <div class="register-page-register-email">
-              <div class="register-page-register-user-email-icon">
-                <img src="../assets/img/pic_four_login.png" alt="" />
-              </div>
-              <input
-                type="text"
-                placeholder="邮箱"
-                v-model="registerObj.email"
-                class="register-page-register-email-input"
-              />
-            </div>
-            <div class="register-page-register-authcode">
-              <div class="register-page-register-getauthcode">
-                <button @click="getAuthCode">获取验证码</button>
-              </div>
-              <div class="regster-page-register-inputauthcode">
-                <input type="text" placeholder="请输入验证码" />
-              </div>
-            </div>
-            <div class="register-page-register-confirm">
-              <button @click="registerPostInfo">注册</button>
-            </div>
+          <div class="login-page-login-confirm">
+            <button @click="loginPostInfo">登录</button>
           </div>
         </div>
       </div>
@@ -116,10 +51,8 @@
 
 <script>
 import { loginPostInfoVerify } from "../assets/js/login-register-page.js/loginPostInfoVerify.js";
-import { registerPostInfoVerify } from "../assets/js/login-register-page.js/registerPostInfoVerify.js";
-import { authCodeVerify } from "../assets/js/login-register-page.js/authCodeVerify.js";
 export default {
-  name: "LoginRegisterPage",
+  name: "LoginPage",
   data() {
     return {
       loginObj: {
@@ -140,22 +73,6 @@ export default {
         this.loginObj.username,
         this.loginObj.password,
         _this
-      );
-    },
-    registerPostInfo() {
-      var _this = this;
-      registerPostInfoVerify(
-        this.registerObj.username,
-        this.registerObj.password,
-        this.registerObj.email,
-        _this
-      );
-    },
-    getAuthCode() {
-      authCodeVerify(
-        this.registerObj.username,
-        this.registerObj.password,
-        this.registerObj.email
       );
     },
   },
@@ -180,17 +97,9 @@ a:hover {
 body {
   margin: 0;
 }
-.login-register-box {
+.login-container {
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
-}
-.login-register-container {
-  width: 200vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  overflow-x: hidden;
 }
 .login-page,
 .register-page {
