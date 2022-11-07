@@ -34,7 +34,7 @@
               <img src="../assets/img/pic_four_login.png" alt="" />
             </div>
             <input
-              class="login-page-login-user-name-password"
+              class="login-page-login-password-input"
               type="password"
               placeholder="密码"
               v-model="loginObj.password"
@@ -71,7 +71,7 @@ export default {
       var _this = this;
       loginPostInfoVerify(
         ".login-page-login-user-name-input",
-        ".login-page-login-user-name-password",
+        ".login-page-login-password-input",
         this.loginObj.username,
         this.loginObj.password,
         _this
@@ -232,7 +232,7 @@ body {
           border-radius: 0 10px 10px 0;
         }
         .login-page-login-user-name-input.login-page-login-user-name-input-placeholder::placeholder,
-        .login-page-login-user-name-password.login-page-login-user-name-password-placeholder::placeholder {
+        .login-page-login-password-input.login-page-login-password-input-placeholder::placeholder {
           color: red;
         }
       }

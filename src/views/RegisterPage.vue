@@ -105,6 +105,9 @@ export default {
     },
     getAuthCode() {
       authCodeVerify(
+        ".register-page-register-user-name-input",
+        ".register-page-register-password-input",
+        ".register-page-register-email-input",
         this.registerObj.username,
         this.registerObj.password,
         this.registerObj.email
