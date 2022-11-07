@@ -70,6 +70,8 @@ export default {
     loginPostInfo() {
       var _this = this;
       loginPostInfoVerify(
+        ".login-page-login-user-name-input",
+        ".login-page-login-user-name-password",
         this.loginObj.username,
         this.loginObj.password,
         _this

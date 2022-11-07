@@ -1,16 +1,13 @@
 import { loginPostInfoAxios } from "./loginPostInfoAxios.js"
-export function registerPostInfoVerify(username, password, email, authcode, _this) {
+export function registerPostInfoVerify(username_input, password_input, email_input, auth_input, username, password, email, authcode, _this) {
     if (username === "" || password === "" || email === "" || authcode === "") {
         if (username === "") {
-            var register_page_register_user_name_input = document.querySelector(
-                ".register-page-register-user-name-input"
-            );
-            register_page_register_user_name_input.placeholder = "请输入用户名";
-            register_page_register_user_name_input.setAttribute(
+            document.querySelector(username_input).placeholder = "请输入用户名";
+            document.querySelector(username_input).setAttribute(
                 "class",
                 "register-page-register-user-name-input register-page-register-user-name-input-placeholder"
             );
-            register_page_register_user_name_input.addEventListener(
+            document.querySelector(username_input).addEventListener(
                 "focus",
                 function () {
                     this.classList.remove(
@@ -19,16 +16,13 @@ export function registerPostInfoVerify(username, password, email, authcode, _thi
                 }
             );
         }
-        if (username === "") {
-            var register_page_register_password_input = document.querySelector(
-                ".register-page-register-password-input"
-            );
-            register_page_register_password_input.placeholder = "请输入密码";
-            register_page_register_password_input.setAttribute(
+        if (password === "") {
+            document.querySelector(password_input).placeholder = "请输入密码";
+            document.querySelector(password_input).setAttribute(
                 "class",
                 "register-page-register-password-input register-page-register-password-input-placeholder"
             );
-            register_page_register_password_input.addEventListener(
+            document.querySelector(password_input).addEventListener(
                 "focus",
                 function () {
                     this.classList.remove(
@@ -39,15 +33,12 @@ export function registerPostInfoVerify(username, password, email, authcode, _thi
         }
 
         if (email === "") {
-            var register_page_register_email_input = document.querySelector(
-                ".register-page-register-email-input"
-            );
-            register_page_register_email_input.placeholder = "请输入邮箱";
-            register_page_register_email_input.setAttribute(
+            document.querySelector(email_input).placeholder = "请输入邮箱";
+            document.querySelector(email_input).setAttribute(
                 "class",
                 "register-page-register-email-input register-page-register-email-input-placeholder"
             );
-            register_page_register_email_input.addEventListener(
+            document.querySelector(email_input).addEventListener(
                 "focus",
                 function () {
                     this.classList.remove(
@@ -57,15 +48,12 @@ export function registerPostInfoVerify(username, password, email, authcode, _thi
             );
         }
         if (authcode === "") {
-            var register_page_register_authcode_input = document.querySelector(
-                ".register-page-register-authcode-input"
-            );
-            register_page_register_authcode_input.placeholder = "请输入验证码";
-            register_page_register_authcode_input.setAttribute(
+            document.querySelector(auth_input).placeholder = "请输入验证码";
+            document.querySelector(auth_input).setAttribute(
                 "class",
                 "register-page-register-authcode-input register-page-register-authcode-input-placeholder"
             );
-            register_page_register_authcode_input.addEventListener(
+            document.querySelector(auth_input).addEventListener(
                 "focus",
                 function () {
                     this.classList.remove(
