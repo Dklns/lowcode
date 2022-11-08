@@ -8,7 +8,6 @@
         </div>
         <div class="login-page-register-container">
           <div>旧用户</div>
-          <!-- <div>已经注册过啦，点击下方按钮加入我们吧</div> -->
           <div>已经注册过啦，点击下方按钮加入我们吧</div>
           <div>
             <button><router-link to="/login">登录</router-link></button>
@@ -74,8 +73,7 @@
 </template>
 
 <script>
-import { registerPostInfoVerify } from "../assets/js/login-register-page.js/registerPostInfoVerify.js";
-import { authCodeVerify } from "../assets/js/login-register-page.js/authCodeVerify.js";
+import { infoVerify } from "../assets/js/login-register-page.js/infoVerify.js";
 export default {
   name: "RegisterPage",
   data() {
@@ -91,26 +89,64 @@ export default {
   methods: {
     registerPostInfo() {
       var _this = this;
-      registerPostInfoVerify(
-        ".register-page-register-user-name-input",
-        ".register-page-register-password-input",
-        ".register-page-register-email-input",
-        ".register-page-register-authcode-input",
-        this.registerObj.username,
-        this.registerObj.password,
-        this.registerObj.email,
-        this.registerObj.authcode,
-        _this
+      infoVerify(
+        [{ page_type: "register-page-register" }],
+        [
+          {
+            input_value: this.registerObj.username,
+            class_input: ".register-page-register-user-name-input",
+            const_input: "用户名",
+            side_const_class: "user-name",
+          },
+          {
+            input_value: this.registerObj.password,
+            class_input: ".register-page-register-password-input",
+            const_input: "密码",
+            side_const_class: "password",
+          },
+          {
+            input_value: this.registerObj.email,
+            class_input: ".register-page-register-email-input",
+            const_input: "邮箱",
+            side_const_class: "email",
+          },
+          {
+            input_value: this.registerObj.authcode,
+            class_input: ".register-page-register-authcode-input",
+            const_input: "验证码",
+            side_const_class: "authcode",
+          },
+        ],
+        _this.registerObj,
+        "post"
       );
     },
     getAuthCode() {
-      authCodeVerify(
-        ".register-page-register-user-name-input",
-        ".register-page-register-password-input",
-        ".register-page-register-email-input",
-        this.registerObj.username,
-        this.registerObj.password,
-        this.registerObj.email
+      var _this = this;
+      infoVerify(
+        [{ page_type: "register-page-register" }],
+        [
+          {
+            input_value: this.registerObj.username,
+            class_input: ".register-page-register-user-name-input",
+            const_input: "用户名",
+            side_const_class: "user-name",
+          },
+          {
+            input_value: this.registerObj.password,
+            class_input: ".register-page-register-password-input",
+            const_input: "密码",
+            side_const_class: "password",
+          },
+          {
+            input_value: this.registerObj.email,
+            class_input: ".register-page-register-email-input",
+            const_input: "邮箱",
+            side_const_class: "email",
+          },
+        ],
+        _this.registerObj,
+        "get"
       );
     },
   },

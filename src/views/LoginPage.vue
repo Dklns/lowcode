@@ -25,7 +25,7 @@
             <input
               class="login-page-login-user-name-input"
               type="text"
-              placeholder="用户名"
+              placeholder="请输入用户名"
               v-model="loginObj.username"
             />
           </div>
@@ -36,7 +36,7 @@
             <input
               class="login-page-login-password-input"
               type="password"
-              placeholder="密码"
+              placeholder="请输入密码"
               v-model="loginObj.password"
             />
           </div>
@@ -50,7 +50,8 @@
 </template>
 
 <script>
-import { loginPostInfoVerify } from "../assets/js/login-register-page.js/loginPostInfoVerify.js";
+// import { loginPostInfoVerify } from "../assets/js/login-register-page.js/loginPostInfoVerify.js";
+import { infoVerify } from "../assets/js/login-register-page.js/infoVerify.js";
 export default {
   name: "LoginPage",
   data() {
@@ -59,22 +60,29 @@ export default {
         username: "",
         password: "",
       },
-      registerObj: {
-        username: "",
-        password: "",
-        email: "",
-      },
     };
   },
   methods: {
     loginPostInfo() {
       var _this = this;
-      loginPostInfoVerify(
-        ".login-page-login-user-name-input",
-        ".login-page-login-password-input",
-        this.loginObj.username,
-        this.loginObj.password,
-        _this
+      infoVerify(
+        [{ page_type: "login-page-login" }],
+        [
+          {
+            input_value: this.loginObj.username,
+            class_input: ".login-page-login-user-name-input",
+            const_input: "用户名",
+            side_const_class: "user-name",
+          },
+          {
+            input_value: this.loginObj.password,
+            class_input: ".login-page-login-password-input",
+            const_input: "密码",
+            side_const_class: "password",
+          },
+        ],
+        _this.loginObj,
+        "post"
       );
     },
   },
@@ -103,8 +111,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
-.login-page,
-.register-page {
+.login-page {
   width: 100vw;
   height: 100vh;
   min-width: 1200px;
@@ -112,13 +119,11 @@ body {
   display: flex;
   flex-direction: row;
 }
-.login-page-bg-box,
-.register-page-bg-box {
+.login-page-bg-box {
   flex: 1;
   position: relative;
 }
-.login-page-img-container,
-.register-page-img-container {
+.login-page-img-container {
   width: 100%;
   height: 100%;
   background-color: #3a9efd;
@@ -141,8 +146,7 @@ body {
     top: 10%;
   }
 }
-.login-page-login-confirm button,
-.register-page-register-confirm button {
+.login-page-login-confirm button {
   width: 25%;
   height: 40px;
   margin-top: 30px;
@@ -244,113 +248,6 @@ body {
         left: 5%;
         top: 50%;
         transform: translateY(-50%);
-      }
-    }
-  }
-}
-.register-page {
-  .register-page-register-box {
-    flex: 1;
-    .register-page-register-container {
-      width: 50%;
-      height: 50%;
-      margin: 0 auto;
-      transform: translateY(50%);
-      text-align: center;
-
-      > div {
-        margin-bottom: 20px;
-      }
-      .register-page-register-title {
-        color: #2c3e50;
-        font-size: 35px;
-        font-weight: 700;
-      }
-
-      .register-page-register-username,
-      .register-page-register-password,
-      .register-page-register-email {
-        display: flex;
-        font-display: row;
-        height: 30px;
-        margin-top: 40px;
-        div {
-          background-color: #ccc;
-          flex: 1;
-          border-radius: 10px 0 0 10px;
-          position: relative;
-          img {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            width: 50%;
-            vertical-align: middle;
-          }
-        }
-        input {
-          flex: 9;
-          outline: none;
-          letter-spacing: 2px;
-          padding-left: 10px;
-          color: #666;
-          font-weight: 700;
-          background-color: #ccc;
-          border-radius: 0 10px 10px 0;
-        }
-      }
-      .register-page-register-user-name-input.register-page-register-user-name-input-placeholder::placeholder,
-      .register-page-register-password-input.register-page-register-password-input-placeholder::placeholder,
-      .register-page-register-email-input.register-page-register-email-input-placeholder::placeholder {
-        color: red;
-      }
-      .register-page-register-username input::-webkit-input-placeholder,
-      .register-page-register-password input::-webkit-input-placeholder,
-      .register-page-register-email input::-webkit-input-placeholder {
-        position: absolute;
-        font-weight: bold;
-        left: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .register-page-register-authcode {
-        margin-top: 60px;
-        display: flex;
-        height: 30px;
-        .register-page-register-getauthcode {
-          flex: 1;
-          button {
-            font-weight: 400;
-            color: #fff;
-            width: 100%;
-            border-radius: 5px;
-            background-color: rgb(108, 99, 255);
-            height: 100%;
-            cursor: pointer;
-          }
-        }
-        .regster-page-register-inputauthcode {
-          flex: 2;
-          input {
-            box-sizing: border-box;
-            width: calc(100% - 20px);
-            height: 100%;
-            position: relative;
-            font-weight: 500;
-            color: #fff;
-            background-color: #000;
-            border-radius: 7px;
-            outline: none;
-            padding-left: 10px;
-            margin-left: 20px;
-          }
-          input::-webkit-input-placeholder {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          }
-        }
       }
     }
   }
