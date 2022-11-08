@@ -1,5 +1,5 @@
 import axios from "axios"
-export function registerGetAxios(url) {
+export function getAxios(url) {
     axios({
         method: "get",
         url: url,

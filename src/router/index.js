@@ -6,11 +6,6 @@ const routes = [
     path: "/",
     redirect: "/login"
   },
-  // {
-  //   path: "/",
-  //   name: "login",
-  //   component: LoginPage
-  // },
   {
     name: "login",
     path: "/login",

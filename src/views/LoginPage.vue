@@ -50,7 +50,6 @@
 </template>
 
 <script>
-// import { loginPostInfoVerify } from "../assets/js/login-register-page.js/loginPostInfoVerify.js";
 import { infoVerify } from "../assets/js/login-register-page.js/infoVerify.js";
 export default {
   name: "LoginPage",
@@ -82,7 +81,8 @@ export default {
           },
         ],
         _this.loginObj,
-        "post"
+        "post",
+        "postLoginInfo"
       );
     },
   },

@@ -1,5 +1,5 @@
 import axios from "axios"
-export function loginPostInfoAxios(url, data) {
+export function postAxios(url, data) {
     axios({
         method: "post",
         url: url,

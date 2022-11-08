@@ -118,7 +118,8 @@ export default {
           },
         ],
         _this.registerObj,
-        "post"
+        "post",
+        "postRegisterInfo"
       );
     },
     getAuthCode() {
@@ -146,7 +147,8 @@ export default {
           },
         ],
         _this.registerObj,
-        "get"
+        "get",
+        "getAuthCode"
       );
     },
   },
@@ -174,9 +176,6 @@ body {
 .register-container {
   width: 100vw;
   height: 100vh;
-  // display: flex;
-  // flex-direction: row;
-  // overflow-x: hidden;
 }
 .register-page {
   width: 100vw;
