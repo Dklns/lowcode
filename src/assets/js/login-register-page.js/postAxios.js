@@ -7,6 +7,7 @@ export async function postAxios(url, data) {
         data: data,
     }).then((res) => {
         temp = res;
+        console.log(res);
     });
     let temp_promise = new Promise((resolve, reject) => {
 

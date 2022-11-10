@@ -69,6 +69,16 @@
         </div>
       </div>
     </div>
+    <div id="overlay">
+      <div class="popup">
+        <p class="popup_title">温馨提示</p>
+        <p class="popup_content">您填写的邮箱格式有误，请重新填写。</p>
+        <div class="popup_btn">
+          <button class="cancelBtn" @click="hidePopup">取消</button>
+          <button class="confirmBtn" @click="hidePopup">确认</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -123,33 +133,47 @@ export default {
       );
     },
     getAuthCode() {
-      var _this = this;
-      infoVerify(
-        [{ page_type: "register-page-register" }],
-        [
-          {
-            input_value: this.registerObj.username,
-            class_input: ".register-page-register-user-name-input",
-            const_input: "用户名",
-            side_const_class: "user-name",
-          },
-          {
-            input_value: this.registerObj.password,
-            class_input: ".register-page-register-password-input",
-            const_input: "密码",
-            side_const_class: "password",
-          },
-          {
-            input_value: this.registerObj.email,
-            class_input: ".register-page-register-email-input",
-            const_input: "邮箱",
-            side_const_class: "email",
-          },
-        ],
-        _this.registerObj,
-        "get",
-        "getAuthCode"
-      );
+      var reg = /^([a-zA-Z0-9]+[-_\\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/;
+      if (!reg.test(this.registerObj.email)) {
+        // alert("邮箱格式不对，请重新输入");
+        this.showpopup();
+      } else {
+        var _this = this;
+        infoVerify(
+          [{ page_type: "register-page-register" }],
+          [
+            {
+              input_value: this.registerObj.username,
+              class_input: ".register-page-register-user-name-input",
+              const_input: "用户名",
+              side_const_class: "user-name",
+            },
+            {
+              input_value: this.registerObj.password,
+              class_input: ".register-page-register-password-input",
+              const_input: "密码",
+              side_const_class: "password",
+            },
+            {
+              input_value: this.registerObj.email,
+              class_input: ".register-page-register-email-input",
+              const_input: "邮箱",
+              side_const_class: "email",
+            },
+          ],
+          _this.registerObj,
+          "get",
+          "getAuthCode"
+        );
+      }
+    },
+    showpopup() {
+      var overlay = document.getElementById("overlay");
+      overlay.style.display = "block";
+    },
+    hidePopup() {
+      var overlay = document.getElementById("overlay");
+      overlay.style.display = "none";
     },
   },
 };
@@ -329,5 +353,52 @@ body {
       }
     }
   }
+}
+/* 遮罩层 */
+#overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  /* IE9以下不支持rgba模式 */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 兼容IE8及以下 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+  display: none;
+}
+.popup {
+  background-color: #ffffff;
+  max-width: 400px;
+  min-width: 200px;
+  height: 240px;
+  border-radius: 5px;
+  margin: 100px auto;
+  text-align: center;
+}
+.popup_title {
+  height: 60px;
+  line-height: 60px;
+  border-bottom: solid 1px #cccccc;
+}
+.popup_content {
+  height: 50px;
+  line-height: 50px;
+  padding: 15px 20px;
+}
+.popup_btn {
+  padding-bottom: 10px;
+}
+.popup_btn button {
+  color: #778899;
+  width: 40%;
+  height: 40px;
+  cursor: pointer;
+  border: solid 1px #cccccc;
+  border-radius: 5px;
+  margin: 5px 10px;
+  color: #ffffff;
+  background-color: #337ab7;
 }
 </style>

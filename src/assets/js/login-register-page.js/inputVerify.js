@@ -3,7 +3,6 @@ import { getAxios } from "./getAxios.js";
 import { postAxios } from "./postAxios.js";
 import router from "@/router";
 export function inputVerify(page_type_array, input_array, obj, axios_type, axios_event) {
-    const res = input_array.some(item => item.input_value === "")
     // 该异步请求函数用于拿到网络请求函数返回的promise值
     async function _postAxios(axios_event) {
 
@@ -11,7 +10,6 @@ export function inputVerify(page_type_array, input_array, obj, axios_type, axios
             var temp = await postAxios('http://127.0.0.1:4523/m1/1750685-0-default/user/login', obj);
             if (temp === "ok") {
                 var temp2 = await getAxios("http://127.0.0.1:4523/m1/1750685-0-default/isconnect")//检查是否连接数据库
-                console.log(temp2);
                 // 如果数据库已经连接
                 if (temp2 === "ok") {
                     router.push({ path: '/register' })//如果数据库已经连接，则直接跳转到。。。。。
@@ -34,6 +32,7 @@ export function inputVerify(page_type_array, input_array, obj, axios_type, axios
         }
 
     }
+    const res = input_array.some(item => item.input_value === "")
     if (res) {
         for (var i = 0; i < input_array.length; i++) {
             var single_array = Object.values(input_array[i]);
@@ -45,7 +44,6 @@ export function inputVerify(page_type_array, input_array, obj, axios_type, axios
     }
     if (axios_type === "get") {
         if (axios_event === "getAuthCode") {
-            console.log("getAuthCode");
             getAxios('http://127.0.0.1:4523/m1/1750685-0-default/mail');
 
         }
@@ -54,7 +52,6 @@ export function inputVerify(page_type_array, input_array, obj, axios_type, axios
         if (axios_event === "postRegisterInfo") {
             _postAxios(axios_event)
         }
-
         if (axios_event === "postLoginInfo") {
             // 这里调用
             _postAxios(axios_event)
