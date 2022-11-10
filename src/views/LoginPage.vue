@@ -8,7 +8,6 @@
         </div>
         <div class="login-page-register-container">
           <div>新用户</div>
-          <!-- <div></div> -->
           <div>终于等到你啦！点击下方注册按钮加入我们吧</div>
           <div>
             <button><router-link to="/register">注册</router-link></button>

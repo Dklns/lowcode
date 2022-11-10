@@ -6,4 +6,6 @@ export function getAxios(url) {
     }).then((res) => {
         console.log(res);
     });
+
+
 }
