@@ -72,10 +72,10 @@
     <div id="overlay">
       <div class="popup">
         <p class="popup_title">温馨提示</p>
-        <p class="popup_content">您填写的邮箱格式有误，请重新填写。</p>
+        <p class="popup_content">{{ popup_content }}</p>
         <div class="popup_btn">
-          <button class="cancelBtn" @click="hidePopup">取消</button>
-          <button class="confirmBtn" @click="hidePopup">确认</button>
+          <button class="cancelBtn" @click="hidepopup">取消</button>
+          <button class="confirmBtn" @click="hidepopup">确认</button>
         </div>
       </div>
     </div>
@@ -84,6 +84,7 @@
 
 <script>
 import { infoVerify } from "../assets/js/login-register-page.js/infoVerify.js";
+import { showpopup } from "../assets/js/login-register-page.js/showpopup.js";
 export default {
   name: "RegisterPage",
   data() {
@@ -94,6 +95,7 @@ export default {
         email: "",
         authcode: "",
       },
+      popup_content: "",
     };
   },
   methods: {
@@ -127,6 +129,7 @@ export default {
             side_const_class: "authcode",
           },
         ],
+        _this,
         _this.registerObj,
         "post",
         "postRegisterInfo"
@@ -134,11 +137,11 @@ export default {
     },
     getAuthCode() {
       var reg = /^([a-zA-Z0-9]+[-_\\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/;
+      var _this = this;
       if (!reg.test(this.registerObj.email)) {
         // alert("邮箱格式不对，请重新输入");
-        this.showpopup();
+        showpopup(_this, "输入错误，请检查邮箱格式或填写为空");
       } else {
-        var _this = this;
         infoVerify(
           [{ page_type: "register-page-register" }],
           [
@@ -167,11 +170,7 @@ export default {
         );
       }
     },
-    showpopup() {
-      var overlay = document.getElementById("overlay");
-      overlay.style.display = "block";
-    },
-    hidePopup() {
+    hidepopup() {
       var overlay = document.getElementById("overlay");
       overlay.style.display = "none";
     },
@@ -300,7 +299,7 @@ body {
       .register-page-register-password-input.register-page-register-password-input-placeholder::placeholder,
       .register-page-register-email-input.register-page-register-email-input-placeholder::placeholder,
       .register-page-register-authcode-input.register-page-register-authcode-input-placeholder::placeholder {
-        color: red;
+        color: #5a001a;
       }
       .register-page-register-username input::-webkit-input-placeholder,
       .register-page-register-password input::-webkit-input-placeholder,

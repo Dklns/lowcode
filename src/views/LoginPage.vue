@@ -79,6 +79,7 @@ export default {
             side_const_class: "password",
           },
         ],
+        _this,
         _this.loginObj,
         "post",
         "postLoginInfo"
@@ -236,7 +237,7 @@ body {
         }
         .login-page-login-user-name-input.login-page-login-user-name-input-placeholder::placeholder,
         .login-page-login-password-input.login-page-login-password-input-placeholder::placeholder {
-          color: red;
+          color: #5a001a;
         }
       }
 

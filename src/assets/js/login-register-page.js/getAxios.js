@@ -1,9 +1,12 @@
 import axios from "axios"
-export async function getAxios(url) {
+export async function getAxios(url, param) {
     var temp = {}
     await axios({
         method: "get",
         url: url,
+        params: {
+            sendto: param
+        }
     }).then((res) => {
         console.log(res);
         temp = res;
