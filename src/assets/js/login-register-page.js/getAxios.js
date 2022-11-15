@@ -23,3 +23,4 @@ export async function getAxios(url, param) {
     return await temp_promise;
 
 }
+

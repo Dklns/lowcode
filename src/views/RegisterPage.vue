@@ -58,7 +58,7 @@
               <input
                 type="text"
                 placeholder="请输入验证码"
-                v-model="registerObj.authcode"
+                v-model="registerObj.mailcode"
                 class="register-page-register-authcode-input"
               />
             </div>
@@ -93,7 +93,7 @@ export default {
         username: "",
         password: "",
         email: "",
-        authcode: "",
+        mailcode: "",
       },
       popup_content: "",
     };
@@ -123,7 +123,7 @@ export default {
             side_const_class: "email",
           },
           {
-            input_value: this.registerObj.authcode,
+            input_value: this.registerObj.mailcode,
             class_input: ".register-page-register-authcode-input",
             const_input: "验证码",
             side_const_class: "authcode",
@@ -164,6 +164,7 @@ export default {
               side_const_class: "email",
             },
           ],
+          _this,
           _this.registerObj,
           "get",
           "getAuthCode"
@@ -299,7 +300,7 @@ body {
       .register-page-register-password-input.register-page-register-password-input-placeholder::placeholder,
       .register-page-register-email-input.register-page-register-email-input-placeholder::placeholder,
       .register-page-register-authcode-input.register-page-register-authcode-input-placeholder::placeholder {
-        color: #5a001a;
+        color: #ff4d4d;
       }
       .register-page-register-username input::-webkit-input-placeholder,
       .register-page-register-password input::-webkit-input-placeholder,

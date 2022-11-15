@@ -1,14 +1,14 @@
 import { createStore } from 'vuex'
 
 export default createStore({
-  state: {
-  },
-  getters: {
+  state() {
+    return {
+      JSESSIONID: ""
+    }
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    changeMessage(state, JSESSIONID) {
+      state.JSESSIONID = JSESSIONID;
+    }
   }
 })
