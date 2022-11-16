@@ -168,6 +168,7 @@ export default {
           "get",
           "getAuthCode"
         );
+        showpopup(_this, "验证码已发送，请按时查看您的邮箱");
       }
     },
     hidepopup() {

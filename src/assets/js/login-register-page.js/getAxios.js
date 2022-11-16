@@ -9,7 +9,6 @@ export async function getAxios(url, param) {
         },
         withCredentials: true,
     }).then((res) => {
-        console.log("getaxios");
         console.log(res);
         temp = res;
     });

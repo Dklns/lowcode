@@ -9,7 +9,6 @@ export async function getauthcode(url, param) {
         },
         withCredentials: true
     }).then((res) => {
-        console.log("getauthcodeend")
         console.log(res);
         temp = res.data.message;
     });
