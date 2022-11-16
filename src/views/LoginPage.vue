@@ -45,6 +45,16 @@
         </div>
       </div>
     </div>
+    <div id="overlay">
+      <div class="popup">
+        <p class="popup_title">温馨提示</p>
+        <p class="popup_content">{{ popup_content }}</p>
+        <div class="popup_btn">
+          <button class="cancelBtn" @click="hidepopup">取消</button>
+          <button class="confirmBtn" @click="hidepopup">确认</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -58,6 +68,7 @@ export default {
         username: "",
         password: "",
       },
+      popup_content: "",
     };
   },
   methods: {
@@ -84,6 +95,10 @@ export default {
         "post",
         "postLoginInfo"
       );
+    },
+    hidepopup() {
+      var overlay = document.getElementById("overlay");
+      overlay.style.display = "none";
     },
   },
 };
@@ -251,5 +266,52 @@ body {
       }
     }
   }
+}
+/* 遮罩层 */
+#overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  /* IE9以下不支持rgba模式 */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 兼容IE8及以下 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+  display: none;
+}
+.popup {
+  background-color: #ffffff;
+  max-width: 400px;
+  min-width: 200px;
+  height: 240px;
+  border-radius: 5px;
+  margin: 100px auto;
+  text-align: center;
+}
+.popup_title {
+  height: 60px;
+  line-height: 60px;
+  border-bottom: solid 1px #cccccc;
+}
+.popup_content {
+  height: 50px;
+  line-height: 50px;
+  padding: 15px 20px;
+}
+.popup_btn {
+  padding-bottom: 10px;
+}
+.popup_btn button {
+  color: #778899;
+  width: 40%;
+  height: 40px;
+  cursor: pointer;
+  border: solid 1px #cccccc;
+  border-radius: 5px;
+  margin: 5px 10px;
+  color: #ffffff;
+  background-color: #337ab7;
 }
 </style>

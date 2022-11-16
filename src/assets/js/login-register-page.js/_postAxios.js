@@ -7,14 +7,20 @@ export async function _postAxios(_this, axios_event, obj) {
     let JSESSIONID = store.state.JSESSIONID;
     if (axios_event === "postLoginInfo") {
         var temp = await postAxios('http://127.0.0.1:8001/user/login', obj, axios_event);
-        if (temp === "ok") {
+        if (temp === "err") {
+            showpopup(_this, "登录失败")
+        }
+        else {
+            store.commit("changeMessage", temp)
+            JSESSIONID = store.state.JSESSIONID;
             var temp2 = await getAxios(`http://127.0.0.1:8001/isconnect?JSESSIONID=${JSESSIONID}`)//检查是否连接数据库
             // 如果数据库已经连接
+            console.log(temp2);
             if (temp2 === "ok") {
-                router.push({ path: '/connectview' })//如果数据库已经连接，则直接跳转到。。。。。
-            }
-            else {
                 router.push({ path: '/register' })//如果数据库尚未连接，则直接跳转到。。。。。
+            }
+            if (temp2 === "err") {
+                router.push({ path: '/connectview' })//如果数据库已经连接，则直接跳转到。。。。。
             }
         }
     }
