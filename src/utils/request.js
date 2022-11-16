@@ -1,9 +1,8 @@
 import axios from 'axios'
-export default function ({ datas }) {
-    const baseUrl = '/api'
+export default function ({ data }) {
     const server = axios.create({
-        baseURL: baseUrl,
-        timeout: 5000
+        timeout: 5000,
+        withCredentials: true
     })
-    return server(datas)
+    return server(data)
 }

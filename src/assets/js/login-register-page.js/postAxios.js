@@ -10,6 +10,7 @@ export async function postAxios(url, data) {
     }).then((res) => {
         temp = res;
         console.log(res);
+        console.log("postaxios");
     }, (err) => {
         temperr = err;
         console.log(err)

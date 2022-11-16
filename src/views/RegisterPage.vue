@@ -139,8 +139,7 @@ export default {
       var reg = /^([a-zA-Z0-9]+[-_\\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/;
       var _this = this;
       if (!reg.test(this.registerObj.email)) {
-        // alert("邮箱格式不对，请重新输入");
-        showpopup(_this, "输入错误，请检查邮箱格式或填写为空");
+        showpopup(_this, "邮箱格式错误");
       } else {
         infoVerify(
           [{ page_type: "register-page-register" }],
