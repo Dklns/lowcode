@@ -4,48 +4,42 @@
       <h1>连接数据库</h1>
       <form>
         <div class="item">
-          <input type="text" id="url" v-model="url" required />
+          <input type="text" id="url" v-model="reqObj.url" required />
           <label>
-            <span
-              v-for="(item, index) in urlSpan"
-              :key="index"
-              :style="{ 'transition-delay': index * 50 + 'ms' }"
-            >
+            <span v-for="(item, index) in urlSpan" :key="index" :style="{ 'transition-delay': index * 50 + 'ms' }">
               {{ item }}
             </span>
           </label>
         </div>
         <div class="item">
-          <input type="text" id="dbName" v-model="dbName" required />
+          <input type="text" id="dbName" v-model="reqObj.user" required />
           <label>
-            <span
-              v-for="(item, index) in dbNameSpan"
-              :key="item"
-              :style="{ 'transition-delay': index * 50 + 'ms' }"
-            >
+            <span v-for="(item, index) in dbNameSpan" :key="item" :style="{ 'transition-delay': index * 50 + 'ms' }">
               {{ item }}
             </span>
           </label>
         </div>
         <div class="item">
-          <input type="password" id="dbPwd" v-model="dbPwd" required />
+          <input type="password" id="dbPwd" v-model="reqObj.password" required />
           <label>
-            <span
-              v-for="(item, index) in dbPwdSpan"
-              :key="item"
-              :style="{ 'transition-delay': index * 50 + 'ms' }"
-            >
+            <span v-for="(item, index) in dbPwdSpan" :key="item" :style="{ 'transition-delay': index * 50 + 'ms' }">
               {{ item }}
             </span>
           </label>
         </div>
-        <button class="btn">连接</button>
+        <button class="btn" @click.prevent="submit">连接</button>
       </form>
+      <div class="hint" v-if="message">
+        <p>{{ message }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from '@/router/index.js';
+import { connectDatabase } from '../service/connect/connect.js';
+
 export default {
   name: "ConnectView",
   data() {
@@ -53,11 +47,32 @@ export default {
       urlSpan: "url",
       dbNameSpan: "数据库名称",
       dbPwdSpan: "密码",
-      url: "",
-      dbName: "",
-      dbPwd: "",
+      reqObj: {
+        url: '',
+        user: '',
+        password: '',
+      },
+      message: '',
     };
   },
+  methods: {
+    submit() {
+      const { url, user, password } = this.reqObj;
+      if (url && user && password) {
+        connectDatabase(this.reqObj)
+          .then(response => Promise.resolve(response))
+          .then(res => {
+            console.log(res);
+            const { code, message } = res.data;
+            if (code === 200) {
+              router.push('/select');
+            } else {
+              this.message = message;
+            }
+          })
+      }
+    }
+  }
 };
 </script>
 
@@ -66,26 +81,15 @@ export default {
   box-sizing: border-box;
   margin: 0;
 }
-/* body {
-  /* background-image: linear-gradient(
-    to top,
-    #85cbee,
-    #7fd9f0,
-    #82e6ec,
-    #91f1e4,
-    #a9fbda
-  ); */
-/* } */
+
 #connect {
-  /* color: #fff; */
-  background-image: linear-gradient(
-    to top,
-    #85cbee,
-    #7fd9f0,
-    #82e6ec,
-    #91f1e4,
-    #a9fbda
-  );
+  color: #fff;
+  background-image: linear-gradient(to top,
+      #85cbee,
+      #7fd9f0,
+      #82e6ec,
+      #91f1e4,
+      #a9fbda);
   margin: 0;
   display: flex;
   justify-content: center;
@@ -162,9 +166,17 @@ export default {
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.item input:focus + label span,
-.item input:valid + label span {
+.item input:focus+label span,
+.item input:valid+label span {
   color: rgb(82, 144, 164);
   transform: translateY(-30px);
+}
+
+.hint {
+  margin-top: 10px;
+  height: 40px;
+  line-height: 40px;
+  color: orange;
+  font-size: 22px;
 }
 </style>
