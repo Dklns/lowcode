@@ -12,12 +12,15 @@ export async function getAxios(url, param) {
         console.log(res);
         temp = res;
     });
+    console.log("asdfghj");
     let temp_promise = new Promise((resolve, reject) => {
         if (temp.data.code !== 200) {
             return resolve("err")
         }
         if (temp.data.code === 200) {
-            return reject("ok")
+            console.log(temp.data.code);
+            return resolve("ok")
+
         }
     })
     return await temp_promise;

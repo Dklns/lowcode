@@ -1,5 +1,5 @@
 import { getauthcode } from "./getauthcode";
 export async function _getauthcode(obj) {
-    var message = await getauthcode('http://127.0.0.1:8001/mail', obj.email);
+    var message = await getauthcode('https://4a8179z637.uicp.fun/mail', obj.email);
     return message;
 }
