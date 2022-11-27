@@ -5,12 +5,13 @@ const METHOD = {
     DELETE: 'delete',
     PUT: 'put'
 }
-async function request(url, method, param) {
+async function request(url, method, params, JSESSIONID) {
+    url += JSESSIONID ? `?JSESSIONID=${JSESSIONID}` : '';
     switch (method) {
         case METHOD.GET:
-            return axios.get(url, param);
+            return axios.get(url, { params });
         case METHOD.POST:
-            return axios.post(url, param);
+            return axios.post(url, params);
     }
 }
 export {

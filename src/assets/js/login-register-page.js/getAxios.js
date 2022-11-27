@@ -13,7 +13,7 @@ export async function getAxios(url, param) {
         temp = res;
     });
     console.log("asdfghj");
-    let temp_promise = new Promise((resolve, reject) => {
+    let temp_promise = new Promise((resolve) => {
         if (temp.data.code !== 200) {
             return resolve("err")
         }

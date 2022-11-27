@@ -19,10 +19,11 @@ export async function _postAxios(_this, axios_event, obj) {
             console.log("1111111");
             console.log(temp2);
             if (temp2 === "ok") {
-                router.push({ path: '/connect' })//如果数据库尚未连接，则直接跳转到。。。。。
+
+                router.push({ path: '/select' })//如果数据库尚未连接，则直接跳转到。。。。。
             }
             if (temp2 === "err") {
-                router.push({ path: '/register' })//如果数据库已经连接，则直接跳转到。。。。。
+                router.push({ path: '/connect' })//如果数据库已经连接，则直接跳转到。。。。。
             }
         }
     }

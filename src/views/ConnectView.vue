@@ -6,11 +6,7 @@
         <div class="item">
           <input type="text" id="url" v-model="reqObj.url" required />
           <label>
-            <span
-              v-for="(item, index) in urlSpan"
-              :key="index"
-              :style="{ 'transition-delay': index * 50 + 'ms' }"
-            >
+            <span v-for="(item, index) in urlSpan" :key="index" :style="{ 'transition-delay': index * 50 + 'ms' }">
               {{ item }}
             </span>
           </label>
@@ -18,28 +14,15 @@
         <div class="item">
           <input type="text" id="dbName" v-model="reqObj.user" required />
           <label>
-            <span
-              v-for="(item, index) in dbNameSpan"
-              :key="item"
-              :style="{ 'transition-delay': index * 50 + 'ms' }"
-            >
+            <span v-for="(item, index) in dbNameSpan" :key="item" :style="{ 'transition-delay': index * 50 + 'ms' }">
               {{ item }}
             </span>
           </label>
         </div>
         <div class="item">
-          <input
-            type="password"
-            id="dbPwd"
-            v-model="reqObj.password"
-            required
-          />
+          <input type="password" id="dbPwd" v-model="reqObj.password" required />
           <label>
-            <span
-              v-for="(item, index) in dbPwdSpan"
-              :key="item"
-              :style="{ 'transition-delay': index * 50 + 'ms' }"
-            >
+            <span v-for="(item, index) in dbPwdSpan" :key="item" :style="{ 'transition-delay': index * 50 + 'ms' }">
               {{ item }}
             </span>
           </label>
@@ -62,7 +45,7 @@ export default {
   data() {
     return {
       urlSpan: "url",
-      dbNameSpan: "数据库名称",
+      dbNameSpan: "用户名",
       dbPwdSpan: "密码",
       reqObj: {
         url: "",
@@ -76,17 +59,19 @@ export default {
     submit() {
       const { url, user, password } = this.reqObj;
       if (url && user && password) {
-        connectDatabase(this.reqObj)
-          .then((response) => Promise.resolve(response))
-          .then((res) => {
-            console.log(res);
-            const { code, message } = res.data;
+        // this.$store.state.JSESSIONID
+        connectDatabase(this.reqObj, this.$store.state.JSESSIONID)
+          .then((response) => {
+            const { code, message } = response.data
+            console.log(response);
             if (code === 200) {
               router.push("/select");
             } else {
               this.message = message;
             }
-          });
+          })
+      } else {
+        this.message = '请填写完全';
       }
     },
   },
@@ -101,14 +86,12 @@ export default {
 
 #connect {
   color: #fff;
-  background-image: linear-gradient(
-    to top,
-    #85cbee,
-    #7fd9f0,
-    #82e6ec,
-    #91f1e4,
-    #a9fbda
-  );
+  background-image: linear-gradient(to top,
+      #85cbee,
+      #7fd9f0,
+      #82e6ec,
+      #91f1e4,
+      #a9fbda);
   margin: 0;
   display: flex;
   justify-content: center;
@@ -185,8 +168,8 @@ export default {
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.item input:focus + label span,
-.item input:valid + label span {
+.item input:focus+label span,
+.item input:valid+label span {
   color: rgb(82, 144, 164);
   transform: translateY(-30px);
 }
