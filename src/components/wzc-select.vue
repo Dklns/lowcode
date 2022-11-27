@@ -3,25 +3,18 @@
     <div class="divSelect" :class="{ drop_down: isListShow }" ref="divSelect">
       <div class="divSelectinput" @click="dropDownSelect">
         <!-- 选中后的内容 -->
-        <div
-          class="selectinfos"
-          :title="label"
-          :class="{ no_select: label == placeholder }"
-        >
+        <div class="selectinfos" :title="label" :class="{ no_select: label == placeholder }">
           {{ placeholder }}
         </div>
         <!-- 三角形图标 -->
-        <i
-          class="imgthree fa fa-caret-up"
-          :class="{ 'is-reverse': isListShow }"
-        ></i>
+        <i class="imgthree fa fa-caret-up" :class="{ 'is-reverse': isListShow }"></i>
       </div>
     </div>
     <!-- 下拉框列表 -->
     <transition name="drop-down">
       <div class="Selectlist" v-show="isListShow" ref="dropDown">
         <div class="select_triangle"></div>
-        <ul class="wzc_option_list">
+        <ul class="wzc_option_list" @click="dropDownSelect">
           <slot name="wzc_option"></slot>
         </ul>
       </div>
